@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+.bg-nav {
+    background: #ff0084;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #33001b, #ff0084);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #33001b, #ff0084); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.display-text {
+    font-size: 14px;
+}
+
+.mt-100 {
+    margin-top:100px;
+}
+
+.mw-500 {
+    max-width: 500px;
+}
+
+.z-99 {
+    z-index: 99;
+}
+
+.b-0 {
+    bottom: 0;
+}
+
+.t-0 {
+    top: 0;
+}
+
+.text-black,
+.nav-link.text-black:hover {
+    color: #000;
+}
+
+.shadow-custom {
+    box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background-color: #2A70FE;
+    color: #fff;
+    border-color: #2A70FE;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.focus,
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn-primary:not(:disabled):not(.disabled).active:focus {
+    background-color: #2365e8;
+    color: #fff;
+    border-color: #2668ec;
+    box-shadow: none;
+    outline: none;
+}
+
+.btn-secondary {
+    background-color: #DFE7FC;
+    color: #2A70FE;
+    border-color: #DFE7FC;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.btn-secondary-admin {
+    background-color: #DFE7FC;
+    color: #2A70FE;
+    border-color: #DFE7FC;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active,
+.btn-secondary.focus,
+.btn-secondary:not(:disabled):not(.disabled):active,
+.btn-secondary:not(:disabled):not(.disabled).active,
+.btn-secondary:not(:disabled):not(.disabled):active:focus,
+.btn-secondary:not(:disabled):not(.disabled).active:focus,
+.btn-secondary-admin:hover,
+.btn-secondary-admin:focus,
+.btn-secondary-admin:active,
+.btn-secondary-admin.focus,
+.btn-secondary-admin:not(:disabled):not(.disabled):active,
+.btn-secondary-admin:not(:disabled):not(.disabled).active,
+.btn-secondary-admin:not(:disabled):not(.disabled):active:focus,
+.btn-secondary-admin:not(:disabled):not(.disabled).active:focus {
+    background-color: #c3d4ff;
+    color: #2A70FE;
+    border-color: #c3d4ff;
+    box-shadow: none;
+    outline: none;
+}
+
+.add-person-btn {
+    margin-top: 80px;
+}
+
+.file-btn {
+    background-color: #c3d4ff;
+    color: #2A70FE;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.image-preview img {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 576px) {
+    .btn-primary,
+    .btn-secondary {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .title-text {
+        font-size: 16px;
+    }
+    
+    .display-text {
+        font-size: 12px;
+    }
+
+    .add-person-btn {
+        margin-top: 50px;
+        margin-bottom: 130px;
+    }
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head.html" %}
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<section class="container py-1 d-flex flex-column min-vh-100 bg-light mw-500">
+    <div class="row mt-5 justify-content-center">
+        <div class="col-12 text-center pt-5">
+            <img src="{{ url_for('static', filename='img/check.svg') }}" width="120" alt="" class="d-inline-block align-middle mr-2">
+            <h5 class="font-weight-bold my-3 title-text text-center">Absensi Berhasil!</h5>
+            <p class="display-text text-center">Data absensi kamu sudah berhasil diinput</p>
+        </div>
+    </div>
+
+    {% include "menubar.html" %}
+</section>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head.html" %}
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<section class="container py-1 d-flex flex-column min-vh-100 bg-light mw-500">
+    <div class="row mt-4 justify-content-center">
+        <div class="col-12">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <h5 class="font-weight-bold my-3 title-text text-center">Form Absensi Mahasiswa</h5>
+            <hr>
+            <form class="form px-sm-3 px-1" method="post" action="/recognition" method = "POST" enctype = "multipart/form-data">
+                <div class="form-group row display-text">
+                    <label for="nim" class="col-sm-12 col-form-label font-weight-bold">Masukan NIM</label>
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control display-text" name="nim" id="nim" required>
+                    </div>
+                </div>
+                <div class="form-group row display-text">
+                    <div class="col-12">
+                        <div class="image-preview">
+                            <img id="image" />
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <label for="file" id="button-upload" class="col-form-label font-weight-bold file-btn">Capture Wajah</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="file" class="form-control display-text" name="file" id="file" capture hidden/>
+                    </div>
+                </div>
+                <div class="form-group row add-person-btn">
+                    <label class="col-sm-2 col-form-label"></label>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary w-100 font-weight-bold">Absen</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% include "menubar.html" %}
+</section>
+
+<script>
+    let button_upload = document.getElementById('button-upload');
+    document.getElementById('file').onchange = function () {
+        var src = URL.createObjectURL(this.files[0])
+        document.getElementById('image').src = src
+        button_upload.innerText = "Capture Ulang"
+    }
+</script>
+</body>
+</html>

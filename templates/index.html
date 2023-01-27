@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head.html" %}
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<section class="container py-1 d-flex flex-column min-vh-100 bg-light mw-500">
+    <div class="row mt-4 justify-content-center">
+        <div class="col-12 text-center mb-4">
+            <img src="{{ url_for('static', filename='img/logo.svg') }}" width="120" alt="" class="d-inline-block align-middle mr-2">
+            <h5 class="font-weight-bold my-3 title-text text-center">Selamat Datang!</h5>
+            <br>
+            <p class="display-text text-center">-- Verifikasi identitas mahasiswa --</p>
+            <p class="display-text text-center">-- Mencegah pemalsuan absensi --</p>
+            <p class="display-text text-center">-- Proses absensi lebih efektif --</p>
+        </div>
+
+        <div class="col-12 text-center">
+            <a href="/absensi" class="btn btn-primary font-weight-bold">Absen Sekarang</a>
+        </div>
+    </div>
+
+    {% include "menubar.html" %}
+</section>
+
+</body>
+</html>

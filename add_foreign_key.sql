@@ -1,0 +1,1 @@
+ALTER TABLE `absensi_log` ADD CONSTRAINT `fk_id_mahasiswa` FOREIGN KEY (`id_mahasiswa`) REFERENCES `mahasiswa`(`id_mahasiswa`) ON DELETE RESTRICT ON UPDATE RESTRICT;
