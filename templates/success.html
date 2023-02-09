@@ -12,7 +12,9 @@
         <div class="col-12 text-center pt-5">
             <img src="{{ url_for('static', filename='img/check.svg') }}" width="120" alt="" class="d-inline-block align-middle mr-2">
             <h5 class="font-weight-bold my-3 title-text text-center">Absensi Berhasil!</h5>
-            <p class="display-text text-center">Data absensi kamu sudah berhasil diinput</p>
+            {% for item in student %}
+                <p class="display-text text-center">Absensi sebagai <strong>{{ item[1] }}</strong> sudah berhasil diinput</p>
+            {% endfor %}
         </div>
     </div>
 

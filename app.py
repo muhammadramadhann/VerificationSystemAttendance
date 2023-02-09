@@ -34,7 +34,7 @@ def riwayat():
     mycursor.execute("select a.id_mahasiswa, b.nama, b.kelas, b.jurusan, a.status_kehadiran, a.waktu_kehadiran "
                      " from absensi_log a "
                      " left join mahasiswa b on a.id_mahasiswa = b.id_mahasiswa "
-                     " order by a.waktu_kehadiran desc ")
+                     )
     absensi = mycursor.fetchall()
 
     return render_template('riwayat.html', absensi=absensi)
@@ -58,7 +58,7 @@ def riwayat():
 #             filename = os.path.join('upload', capture_result.filename)
 #             capture_result.save(filename)
 
-#             result = DeepFace.verify(img1_path=filename, img2_path='./images/{}'.format(verification_img), model_name='SFace', detector_backend='mtcnn')
+#             result = DeepFace.verify(img1_path=filename, img2_path='./images/{}'.format(verification_img), model_name='Facenet', detector_backend='mtcnn')
             
 #             if result['verified'] == True:
 #                 return 'Absensi berhasil'
@@ -99,9 +99,14 @@ def face_recognition():
 
                         end = time.time()
                         time_exec = end - start_time
-                        print("time execution: %s" % (time_exec))
 
-                        return render_template('success.html')
+                        print("time execution: %s" % (time_exec))
+                        print("threshold: %s" % (result['threshold']))
+                        print("distance: %s" % (result['distance']))
+                        
+                        student = mycursor.execute("select * from mahasiswa where id_mahasiswa = '{}'".format(id_mahasiswa))
+                        student_data = mycursor.fetchall()
+                        return render_template('success.html', student=student_data)
                     else:
                         mycursor.execute(""" UPDATE `absensi_log` SET `status_kehadiran` = '{}', `waktu_kehadiran` = '{}' WHERE `absensi_log`.`id_mahasiswa` = '{}' """.format('Sudah melakukan absen', current_time, nim_mahasiswa))
                         conn.commit()
@@ -109,18 +114,37 @@ def face_recognition():
                         end = time.time()
                         time_exec = end - start_time
                         print("time execution: %s" % (time_exec))
-
-                        return render_template('success.html')
+                        print("threshold: %s" % (result['threshold']))
+                        print("distance: %s" % (result['distance']))
+                        
+                        student = mycursor.execute("select * from mahasiswa where id_mahasiswa = '{}'".format(id_mahasiswa))
+                        student_data = mycursor.fetchall()
+                        return render_template('success.html', student=student_data)
                 else:
-                    mycursor.execute("""INSERT INTO `absensi_log` (`id_mahasiswa`, `status_kehadiran`, `waktu_kehadiran`) VALUES
+                    absensi_log = mycursor.execute("select * from absensi_log where id_mahasiswa = '{}'".format(id_mahasiswa))
+                    if (absensi_log == None or absensi_log == 0):
+                        mycursor.execute("""INSERT INTO `absensi_log` (`id_mahasiswa`, `status_kehadiran`, `waktu_kehadiran`) VALUES
                         ('{}', '{}', '{}')""".format(nim_mahasiswa, 'Absensi tidak valid', current_time))
-                    conn.commit()
+                        conn.commit()
 
-                    end = time.time()
-                    time_exec = end - start_time
-                    print("time execution: %s" % (time_exec))
+                        end = time.time()
+                        time_exec = end - start_time
+                        print("time execution: %s" % (time_exec))
+                        print("threshold: %s" % (result['threshold']))
+                        print("distance: %s" % (result['distance']))
 
-                    return render_template('failed.html')
+                        return render_template('failed.html')
+                    else:
+                        mycursor.execute(""" UPDATE `absensi_log` SET `status_kehadiran` = '{}', `waktu_kehadiran` = '{}' WHERE `absensi_log`.`id_mahasiswa` = '{}' """.format('Absensi tidak valid', current_time, nim_mahasiswa))
+                        conn.commit()
+
+                        end = time.time()
+                        time_exec = end - start_time
+                        print("time execution: %s" % (time_exec))
+                        print("threshold: %s" % (result['threshold']))
+                        print("distance: %s" % (result['distance']))
+
+                        return render_template('failed.html')
             except:
                 return render_template('failed.html')
 
