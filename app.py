@@ -39,32 +39,6 @@ def riwayat():
 
     return render_template('riwayat.html', absensi=absensi)
 
-# @app.route('/recognition', methods=['GET', 'POST'])
-# def recognition():
-#     if request.method == 'POST':
-#         conn = mysql.connect()
-#         mycursor = conn.cursor()
-
-#         id_mahasiswa = request.form['nim']
-#         capture_result = request.files['file']
-
-#         student = mycursor.execute("select * from mahasiswa where id_mahasiswa = '{}'".format(id_mahasiswa))
-#         if (student == None or student == 0):
-#             return "NIM yang kamu masukan tidak terdaftar"
-#         else:
-#             row = mycursor.fetchone()
-#             verification_img = row[4]
-
-#             filename = os.path.join('upload', capture_result.filename)
-#             capture_result.save(filename)
-
-#             result = DeepFace.verify(img1_path=filename, img2_path='./images/{}'.format(verification_img), model_name='Facenet', detector_backend='mtcnn')
-            
-#             if result['verified'] == True:
-#                 return 'Absensi berhasil'
-#             else:
-#                 return 'Absensi gagal, wajah tidak dikenali'
-
 @app.route('/recognition', methods=['GET', 'POST'])
 def face_recognition():
     if request.method == 'POST':
